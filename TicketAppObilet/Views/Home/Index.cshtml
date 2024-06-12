@@ -1,0 +1,94 @@
+﻿@using TicketAppObilet.Models
+@model IndexVM
+
+@{
+    ViewData["Title"] = "Bilet Ara";
+}
+
+<form action="Home/Journey" method="post">
+    <div class="card">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <div class="row location-row">
+                <div class="col-12">
+                    <label class="label">Nereden</label>
+                </div>
+                <div class="col-1">
+                    <i class="fas fa-map-marker-alt icons"></i>
+                </div>
+                <div class="col-10">
+                    @Html.DropDownListFor(x => x.OriginID, Model.OriginLocations, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="row exchangeBtnDiv">
+                <div class="col-12 text-center">
+                    <button onclick="exchangeLocations()" type="button" class="btn btn-primary exchangeBtn">
+                        <i class="fas fa-exchange-alt exchangeIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row location-row">
+                <div class="col-12">
+                    <label class="label">Nereye</label>
+                </div>
+                <div class="col-1">
+                    <i class="fas fa-map-marker-alt icons"></i>
+                </div>
+                <div class="col-10">
+                    @Html.DropDownListFor(x => x.DestinationID, Model.DestinationLocations, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="row date-row">
+                <div class="col-10">
+                    <label class="label"> Tarih </label>
+                </div>
+                <div class="col-2">
+                    <button onclick="todayClick()" class="btn btn-outline-secondary dayBtn" type="button">Bugün</button>
+                </div>
+                <div class="col-10">
+                    @Html.TextBoxFor(model => model.DepartureDate, Model.DepartureDate.ToString("yyyy-MM-dd"), new { @type = "date", @class = "form-control", @min = $"{DateTime.Now.ToString("yyyy-MM-dd")}" })
+                </div>
+                <div class="col-2">
+                    <button onclick="tomorrowClick()" class="btn btn-outline-secondary dayBtn" type="button">Yarın</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button id="SubmitBtn" type="submit" class="btn btn-primary">Bileti Bul</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            @if (TempData["Message"] != null)
+            {
+                <p id="footerText">
+                    @TempData["message"]
+                </p>
+            }
+            else
+            {
+                <p id="footerText">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blan
+                </p>
+            }
+
+        </div>
+    </div>
+</form>
+
+<script>
+    function todayClick() {
+        $("#DepartureDate").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+    };
+
+    function tomorrowClick() {
+        $("#DepartureDate").val("@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")");
+    };
+
+
+</script>

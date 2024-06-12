@@ -1,0 +1,53 @@
+﻿@using Newtonsoft.Json
+@using TicketAppObilet.Models
+@model JourneyVM
+
+@{
+    ViewData["Title"] = "Seferler";
+}
+
+<div id="mainCard" class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-2">
+                <a href="@Url.Action("Index","Home")" style="color:white"> <i class="fas fa-arrow-left"></i> </a>
+            </div>
+            <div class="col-10 text-center" style="color:white; font-size:14px">
+                <b> @Model.OriginName - @Model.DestinationName</b>
+                <br />
+                <span style="font-size:12px">@Model.DeperatureDate</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mainCardBody card-body">
+        <table class="table table-hover">
+            @if (Model.JourneyResponseData?.Length > 0)
+            {
+                <tbody>
+                    @foreach (var journey in Model.JourneyResponseData)
+                    {
+                        <tr>
+                            <td>
+                                <form action="@Url.Action("JourneyDetails", "Home")" method="post" id="journeyForm-@journey.ID">
+                                    <input type="hidden" name="journeyJson" value='@Html.Raw(JsonConvert.SerializeObject(journey))' />
+                                    <div class="journeyCard text-black bg-white" onclick="document.getElementById('journeyForm-@journey.ID').submit();">
+                                        <div class="row">
+                                            <div class="col-3 text-center" style="font-size:15px; color:#192289"><span style="font-size:9px; color:#3640B1">Kalkış</span>  <br /> <b> @journey.Journey.Departure.ToString("HH:mm")</b> </div>
+                                            <div class="col-2 text-center"><br /> <i class="fas fa-arrow-right"></i></div>
+                                            <div class="col-3 text-center" style="font-size:15px; color:#192289"><span style="font-size:9px; color:#3640B1">Varış</span> <br /><b> @journey.Journey.Arrival.ToString("HH:mm")</b></div>
+                                            <div class="col-4 text-right"><button type="button" class="priceBtn btn btn-round">@journey.Journey.InternetPrice TL</button></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 text-left" style="font-size:14px; color:#083145;"> <p class="ml-2"> @journey.Journey.Origin - @journey.Journey.Destination </p> </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            }
+        </table>
+    </div>
+</div>

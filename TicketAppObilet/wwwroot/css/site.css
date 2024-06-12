@@ -1,0 +1,179 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.exchangeBtnDiv {
+    position: absolute;
+    left: 80%;
+    top: 20%;
+}
+
+#SubmitBtn {
+    background-color: #2F4EB4;
+    width: 208px;
+    height: 41px;
+    color: white;
+    margin-top: 25px;
+}
+
+.exchangeBtn {
+    color: gray;
+    background-color: white;
+    border-color: gray !important;
+    width: 28px;
+    height: 28px;
+    border-radius: 100%;
+    transform: rotate(90deg);
+}
+
+.exchangeIcon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.card {
+    width: 320px;
+    height: 568px;
+    background-color: #FFFFFF;
+    opacity: 100%
+}
+
+.card-header {
+    background-color: #2F4EB4;
+    width: 320px;
+    height: 40px;
+}
+
+.card-body {
+    background-color: #F8F8F8;
+    width: 320px;
+    height: 375px;
+}
+
+.card-footer {
+    background-color: white;
+    border: none;
+}
+
+#footerText {
+    width: 290px;
+    height: 145px;
+    font-family: roboto;
+    font-size: 12px;
+    text-align: left;
+    padding: 5px 10px;
+    overflow-y: auto
+}
+
+.label {
+    padding-left: 41px;
+    color: #2F4EB4;
+    font-weight: 600
+}
+
+
+.dayBtn {
+    width: 65px;
+    height: 24px;
+    font-size: 12px;
+    margin: 5px -30px;
+    line-height: 1px;
+}
+
+#OriginID, #DestinationID, #DepartureDate {
+    width: 100%;
+    margin-left: 5px;
+    background: transparent;
+    border: none;
+}
+
+#DepartureDate {
+    margin-left: 32px;
+    width: 150px;
+}
+
+.icons {
+    color: gray;
+    margin: 5px 15px;
+}
+
+select {
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+.location-row {
+    background-color: white;
+    border-radius: 5%;
+    margin: 10px 10px 0 10px;
+}
+
+.date-row {
+    background-color: white;
+    border-radius: 5%;
+    margin: 10px 5px;
+}
+.table td, .table th {
+    border: none;
+}
+
+
+.card-header {
+    background-color: #2F4EB4;
+    height: 72px;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.mainCardBody {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#mainCard {
+    width: 335px;
+    height: 568px;
+    background-color: #F3F3F3;
+}
+
+.journeyCard {
+    width: 304px;
+    height: 80px;
+    margin-left: -5px;
+    padding: 5px;
+    cursor: pointer;
+
+}
+
+.priceBtn {
+    background-color: #D23B38;
+    height: 25px;
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1px
+}

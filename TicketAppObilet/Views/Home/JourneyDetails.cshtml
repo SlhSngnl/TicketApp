@@ -1,0 +1,63 @@
+﻿@using TicketAppObilet.Models
+@model JourneyDetailsVM
+
+@{
+    ViewData["Title"] = "Sefer Detayları";
+    var logoUrl = $"https://s3.eu-central-1.amazonaws.com/static.obilet.com/images/partner/{Model.Journey.PartnerID}-sm.png";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-2">
+                <a href="@Url.Action("Journey", "Home")" style="color:white"> <i class="fas fa-arrow-left"></i> </a>
+            </div>
+            <div class="col-10 text-center" style="color:white; font-size:14px">
+                <b>@Model.Journey.OriginLocation - @Model.Journey.DestinationLocation</b>
+                <br />
+                <span style="font-size:12px">@Model.Journey.Journey.Departure.ToString("dd MMMM yyyy")</span>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 text-center">
+                <img src="@logoUrl" alt="@Model.Journey.PartnerName" style="max-height: 50px; margin-bottom: 10px;">
+            </div>
+            <div class="col-12">
+                <h4>Firma: @Model.Journey.PartnerName</h4>
+                <p><strong>Otobüs Tipi:</strong> @Model.Journey.BusType</p>
+                <p><strong>Toplam Koltuk:</strong> @Model.Journey.TotalSeats</p>
+                <p><strong>Boş Koltuk:</strong> @Model.Journey.AvailableSeats</p>
+                <p><strong>Kalkış Saati:</strong> @Model.Journey.Journey.Departure.ToString("HH:mm")</p>
+                <p><strong>Varış Saati:</strong> @Model.Journey.Journey.Arrival.ToString("HH:mm")</p>
+                <p><strong>Duraklar:</strong></p>
+                <ul>
+                    @foreach (var stop in Model.Journey.Journey.BusStops)
+                    {
+                        <li>@stop.Name - @stop.DateTime</li>
+                    }
+                </ul>
+                <p><strong>Otobüs Özellikleri:</strong></p>
+                <ul>
+                    @foreach (var feature in Model.Journey.Features)
+                    {
+                        <li>@feature.Name</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-header {
+        background-color: #2F4EB4;
+        color: white;
+    }
+
+    .card-body {
+        background-color: #F8F8F8;
+        overflow:scroll;
+    }
+</style>
